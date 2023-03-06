@@ -10,9 +10,9 @@ classdef Spectrometer < handle
     
     properties       
         IntegrationTime =1000;
-        BoxcarWidth=40;
+        BoxcarWidth=30;
         ScansToAverage=1;
-        CorrectForDetectorNonlinearity=false
+        CorrectForDetectorNonlinearity=true;
         CorrectForElectricalDark=false;
         detectorTECSetpointDegC;
         system_info=[];
@@ -69,6 +69,13 @@ classdef Spectrometer < handle
             end
         end
         
+        
+        function obj = set.BoxcarWidth(obj,BoxcarWidth)
+            obj.BoxcarWidth=BoxcarWidth;
+            if(obj.is_OceanOptics)
+               invoke(obj.spectrometerObj,'setBoxcarWidth',obj.spectrometerIndex,0,obj.BoxcarWidth);
+            end
+        end
         function obj = set.CorrectForDetectorNonlinearity(obj,enable)
             obj.CorrectForDetectorNonlinearity=enable;
             if(obj.is_OceanOptics)

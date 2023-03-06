@@ -6,7 +6,8 @@ classdef update_conc_changes < handle
         DPF;
         optode_dist;
         raw0;
-        use_kalman=1;
+        use_kalman=0;
+        Q=1E-2;
     end
     properties(Hidden=true)
         lstValid_wavelengths;
@@ -31,8 +32,17 @@ classdef update_conc_changes < handle
                                 obj.ext_coefs(obj.lstValid_wavelengths,2:4))*...
                                 obj.ext_coefs(obj.lstValid_wavelengths,2:4)';
             
-            obj.modelKF=nirs.realtime.util.KalmanFilter(1E-2*eye(3));             
+            obj.modelKF=nirs.realtime.util.KalmanFilter(obj.Q*eye(3));             
                             
+        end
+        
+        function set.Q(obj,Q)
+            obj.Q=Q;
+            if(isempty(obj.modelKF))
+                obj.modelKF=nirs.realtime.util.KalmanFilter(obj.Q*eye(3));
+            else
+                obj.modelKF.Q=obj.Q*eye(3);
+            end
         end
         
         function update(obj,raw)
@@ -43,7 +53,7 @@ classdef update_conc_changes < handle
                 obj.modelKF.update(dOD,obj.ext_coefs(obj.lstValid_wavelengths,2:4)*(obj.optode_dist*obj.DPF))
                 conc=obj.modelKF.B;
             else
-                  conc = obj.inv_ext_coefs*dOD/(obj.optode_dist*obj.DPF);
+                conc = obj.inv_ext_coefs*dOD/(obj.optode_dist*obj.DPF);
             end
             obj.HBO2=conc(1)*1000;
             obj.HHB =conc(2)*1000;

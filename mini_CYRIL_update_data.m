@@ -1,6 +1,10 @@
 function varargout=mini_CYRIL_update_data(varargin)
 app=get(findall(0,'Type','figure','Name','MINICYRIL'),'userdata');
 
+% Step 1- grab new data and update the spectrum display
+[data,wavelength]=app.system_info.Spectrometer_driver.get_spectrum();
+app.LiveTimesEditField.Value= 24*3600*(now-app.daq_start_time);
+
 if(~isempty(app.MarkEventButton.UserData))
     fprintf(app.file_info.file_fid,'Event %s\n',app.MarkEventButton.UserData);
     app.MarkEventButton.UserData=[];
@@ -26,9 +30,6 @@ end
 maxtime=app.DisplayWindowsEditField.Value;
 
 
-% Step 1- grab new data and update the spectrum display
-[data,wavelength]=app.system_info.Spectrometer_driver.get_spectrum();
-
 app.stored_data.time(app.stored_data.count)=app.LiveTimesEditField.Value;
 app.stored_data.raw_data(app.stored_data.count,:)=data;
 app.stored_data.count=app.stored_data.count+1;
@@ -39,12 +40,12 @@ xlim(app.UIAxes_Spectra, [600 950])
 drawnow;
 time=datestr(now);
 
-fprintf(app.file_info.file_fid,'%s,',time);
-fprintf(app.file_info.file_fid,'%d,',data);
-fprintf(app.file_info.file_fid,'\n');
-
+if(app.saving_data)
+    fprintf(app.file_info.file_fid,'%s,',time);
+    fprintf(app.file_info.file_fid,'%d,',data);
+    fprintf(app.file_info.file_fid,'\n');
+end
 try
-app.LiveTimesEditField.Value= 24*3600*(now-app.daq_start_time);
 
 
 app.conc_changes.update(data);

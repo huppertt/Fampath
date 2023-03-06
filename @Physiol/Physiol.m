@@ -8,7 +8,7 @@ classdef Physiol < handle
     properties(Hidden=true)
         ble_channel;
         ble_device;
-        capno_device;ed
+        capno_device;
         
         data_buffer=1000;
         
@@ -29,6 +29,8 @@ classdef Physiol < handle
         raw_EtCO2_cnt;
         raw_CO2_cnt;
         isrunning=false;
+        start_time;
+        last_sample;
     end
     
     methods
@@ -106,6 +108,8 @@ classdef Physiol < handle
         function start(obj)
             obj.isrunning=true;
             fopen(obj.capno_device);
+            obj.start_time=now;
+            obj.last_sample=0;
         end
         
         function stop(obj)
@@ -155,6 +159,8 @@ classdef Physiol < handle
             
             try
                 data=fread(obj.capno_device,obj.capno_device.BytesAvailable);
+                time_elapsed=now-obj.start_time;
+                
                 EtCO2=[];
                 CO2=[];
                 RR=[];
@@ -208,7 +214,10 @@ classdef Physiol < handle
                 
                 cnt=obj.raw_EtCO2_cnt+1;
                 obj.raw_EtCO2_cnt=cnt+length(EtCO2)-1;
-                obj.raw_EtCO2_time(cnt:obj.raw_EtCO2_cnt)=EtCO2;
+                
+                t=linspace(obj.last_sample,time_elapsed,length(EtCO2)+1);
+                obj.last_sample=time_elapsed;
+                obj.raw_EtCO2_time(cnt:obj.raw_EtCO2_cnt)=t(2:end)*86408;
                 obj.raw_EtCO2(cnt:obj.raw_EtCO2_cnt)=EtCO2;
                 obj.raw_RespRate(cnt:obj.raw_EtCO2_cnt)=RR;
                 

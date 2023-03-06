@@ -1,6 +1,6 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
   <configuration build-checksum="3146060443" file="C:\Users\Optical_User\Desktop\FAMPATH\NeoLight_v1.prj" location="C:\Users\Optical_User\Desktop\FAMPATH" name="NeoLight_v1" preferred-package-location="C:\Users\Optical_User\Desktop\FAMPATH\NeoLight_v1\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
-    <param.appname>MiniCYRIL</param.appname>
+    <param.appname>NeoLight_v1</param.appname>
     <param.icon>${PROJECT_ROOT}\NeoLight_v1_resources\icon.ico</param.icon>
     <param.icons>
       <file>${PROJECT_ROOT}\NeoLight_v1_resources\icon_48.png</file>
@@ -16,7 +16,7 @@
     <param.description />
     <param.screenshot>${PROJECT_ROOT}\Splash.png</param.screenshot>
     <param.guid />
-    <param.installpath.string>\University of Pittsburgh\MiniCYRIL\</param.installpath.string>
+    <param.installpath.string>\University of Pittsburgh\NeoLight_v1\</param.installpath.string>
     <param.installpath.combo>option.installpath.programfiles</param.installpath.combo>
     <param.logo />
     <param.install.notes />
@@ -150,9 +150,9 @@
       <file>C:\Users\Optical_User\Desktop\nirs-toolbox\+nirs\+realtime\+util\KalmanFilter.m</file>
     </fileset.depfun>
     <build-deliverables>
-      <file location="${PROJECT_ROOT}\NeoLight_v1\for_testing" name="MiniCYRIL.exe" optional="false">C:\Users\Optical_User\Desktop\FAMPATH\NeoLight_v1\for_testing\MiniCYRIL.exe</file>
       <file location="${PROJECT_ROOT}\NeoLight_v1\for_testing" name="splash.png" optional="false">C:\Users\Optical_User\Desktop\FAMPATH\NeoLight_v1\for_testing\splash.png</file>
       <file location="${PROJECT_ROOT}\NeoLight_v1\for_testing" name="readme.txt" optional="true">C:\Users\Optical_User\Desktop\FAMPATH\NeoLight_v1\for_testing\readme.txt</file>
+      <file location="${PROJECT_ROOT}\NeoLight_v1\for_testing" name="NeoLight_v1.exe" optional="false">C:\Users\Optical_User\Desktop\FAMPATH\NeoLight_v1\for_testing\NeoLight_v1.exe</file>
     </build-deliverables>
     <workflow />
     <matlab>

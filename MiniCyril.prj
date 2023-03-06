@@ -1,0 +1,165 @@
+<deployment-project plugin="plugin.apptool" plugin-version="1.0">
+  <configuration build-checksum="403771130" file="C:\Users\Optical_User\Desktop\FAMPATH\MiniCyril.prj" location="C:\Users\Optical_User\Desktop\FAMPATH" name="MiniCyril" target="target.mlapps" target-name="Package App">
+    <param.appname>MiniCyril</param.appname>
+    <param.authnamewatermark>T Huppert</param.authnamewatermark>
+    <param.email />
+    <param.company />
+    <param.icon />
+    <param.icons />
+    <param.summary />
+    <param.description />
+    <param.screenshot>C:\Users\Optical_User\AppData\Local\Temp\tpf3895548_0d64_4fe6_86c2_1b44b2a2798a.png</param.screenshot>
+    <param.version>1.0</param.version>
+    <param.products.name />
+    <param.products.id />
+    <param.products.version />
+    <param.platforms />
+    <param.output>${PROJECT_ROOT}</param.output>
+    <param.guid>134dda27-c6d4-4478-acd5-561017886a0e</param.guid>
+    <unset>
+      <param.email />
+      <param.company />
+      <param.icon />
+      <param.icons />
+      <param.summary />
+      <param.description />
+      <param.version />
+      <param.products.name />
+      <param.products.id />
+      <param.products.version />
+      <param.platforms />
+      <param.output />
+    </unset>
+    <fileset.main>
+      <file>${PROJECT_ROOT}\miniCYRIL_at_Columbia.mlapp</file>
+    </fileset.main>
+    <fileset.depfun>
+      <file>${PROJECT_ROOT}\@Physiol\Physiol.m</file>
+      <file>${PROJECT_ROOT}\@Spectrometer\Spectrometer.m</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_append_child.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_append_child_value.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_append_copy.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_child.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_child_value.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_child_value_n.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_close_stream.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_create_inlet.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_create_streaminfo.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_destroy_inlet.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_destroy_streaminfo.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_empty.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_first_child.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_freelib_.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_get_channel_count.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_get_channel_format.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_get_created_at.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_get_desc.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_get_fullinfo.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_get_name.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_get_nominal_srate.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_get_session_id.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_get_source_id.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_get_type.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_get_uid.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_get_version.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_get_xml.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_is_text.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_last_child.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_loadlib_.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_name.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_next_sibling.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_next_sibling_n.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_open_stream.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_parent.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_prepend_child.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_prepend_copy.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_previous_sibling.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_previous_sibling_n.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_pull_chunk_d.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_pull_sample_buf.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_pull_sample_d.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_pull_sample_str.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_remove_child.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_remove_child_n.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_resolve_byprop_.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_set_child_value.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_set_name.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_set_postprocessing.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_set_value.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_time_correction.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\bin\lsl_value.mexw64</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\lsl_get_dll.m</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\lsl_inlet.m</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\lsl_loadlib.m</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\lsl_resolve_byprop.m</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\lsl_streaminfo.m</file>
+      <file>${PROJECT_ROOT}\liblsl-Matlab-master\lsl_xml_ptr.m</file>
+      <file>${PROJECT_ROOT}\mini_CYRIL_update_data.m</file>
+      <file>${PROJECT_ROOT}\specific_extinction_coeffs_770to906.m</file>
+      <file>${PROJECT_ROOT}\update_conc_changes.m</file>
+      <file>C:\Users\Optical_User\Desktop\nirs-toolbox\+nirs\+realtime\+util\KalmanFilter.m</file>
+    </fileset.depfun>
+    <fileset.resources />
+    <fileset.package />
+    <build-deliverables>
+      <file location="C:\Users\Optical_User\Desktop" name="FAMPATH" optional="false">C:\Users\Optical_User\Desktop\FAMPATH</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>C:\Program Files\MATLAB\R2021a</root>
+      <toolboxes>
+        <toolbox name="matlabcoder" />
+        <toolbox name="embeddedcoder" />
+        <toolbox name="gpucoder" />
+        <toolbox name="fixedpoint" />
+        <toolbox name="matlabhdlcoder" />
+        <toolbox name="neuralnetwork" />
+      </toolboxes>
+      <toolbox>
+        <matlabcoder>
+          <enabled>true</enabled>
+        </matlabcoder>
+      </toolbox>
+      <toolbox>
+        <embeddedcoder>
+          <enabled>true</enabled>
+        </embeddedcoder>
+      </toolbox>
+      <toolbox>
+        <gpucoder>
+          <enabled>true</enabled>
+        </gpucoder>
+      </toolbox>
+      <toolbox>
+        <fixedpoint>
+          <enabled>true</enabled>
+        </fixedpoint>
+      </toolbox>
+      <toolbox>
+        <matlabhdlcoder>
+          <enabled>true</enabled>
+        </matlabhdlcoder>
+      </toolbox>
+      <toolbox>
+        <neuralnetwork>
+          <enabled>true</enabled>
+        </neuralnetwork>
+      </toolbox>
+    </matlab>
+    <platform>
+      <unix>false</unix>
+      <mac>false</mac>
+      <windows>true</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>false</linux>
+      <solaris>false</solaris>
+      <osver>10.0</osver>
+      <os32>false</os32>
+      <os64>true</os64>
+      <arch>win64</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>
