@@ -55,7 +55,7 @@ classdef Physiol < handle
                             obj.ble_device.Characteristics.CharacteristicUUID(i));
                         obj.ble_channel.DataAvailableFcn=@(d,t)local_add_pulse_data(obj,d,t);
                     catch
-                        warning('Unable to connect with OxySmart PulseOx');
+                      %  warning('Unable to connect with OxySmart PulseOx');
                         obj.pulseox_connected=false;
                     end
                 end
