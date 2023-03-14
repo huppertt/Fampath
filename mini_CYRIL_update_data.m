@@ -13,19 +13,19 @@ if(~isempty(app.MarkEventButton.UserData))
     t=24*3600*(now-app.daq_start_time);
     plot(app.UIAxes_Concentration,[t t],[yaxis]);
     %TODO- add event line on plot
-end
-
-if(~isempty(app.system_info.inlet))
-    try
-        [mrks,ts] = app.system_info.inlet.pull_sample(.05);
-        if(~isempty(ts))
-            app.stored_data.events(app.stored_data.count)=mrks;
-            yaxis=get(app.UIAxes_Concentration,'Ylim');
-            t=24*3600*(now-app.daq_start_time);
-            plot(app.UIAxes_Concentration,[t t],[yaxis]);
-        end
-    end
-end
+ end
+% 
+% if(~isempty(app.system_info.inlet))
+%     try
+%         [mrks,ts] = app.system_info.inlet.pull_sample(.05);
+%         if(~isempty(ts))
+%             app.stored_data.events(app.stored_data.count)=mrks;
+%             yaxis=get(app.UIAxes_Concentration,'Ylim');
+%             t=24*3600*(now-app.daq_start_time);
+%             plot(app.UIAxes_Concentration,[t t],[yaxis]);
+%         end
+%     end
+% end
 
 maxtime=app.DisplayWindowsEditField.Value;
 
