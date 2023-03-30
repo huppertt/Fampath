@@ -125,6 +125,7 @@ classdef Spectrometer < handle
         
         
         function initialize(obj)
+            
             if(obj.is_OceanOptics)
                 obj.spectrometerObj = icdevice('OceanOptics_OmniDriver.mdd');
                 connect(obj.spectrometerObj);
