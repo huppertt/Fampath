@@ -64,7 +64,7 @@ classdef Spectrometer < handle
             if(obj.is_OceanOptics)
                 invoke(obj.spectrometerObj, 'setIntegrationTime', obj.spectrometerIndex, 0, 1000*obj.IntegrationTime/obj.ScansToAverage);
           else
-                 obj.spectrometerObj.integrationTimeMSobj.IntegrationTime;
+                 obj.spectrometerObj.integrationTimeMS=obj.IntegrationTime;
       
             end
         end
@@ -94,15 +94,16 @@ classdef Spectrometer < handle
         
         function set.detectorTECSetpointDegC(obj,detectorTECSetpointDegC)
             if(~obj.is_OceanOptics)
-                obj.detectorTECSetpointDegC=detectorTECSetpointDegC;
-                obj.spectrometer.detectorTECEnabled = 1;
-                obj.spectrometer.detectorTECSetpointDegC = detectorTECSetpointDegC;
+%                 obj.detectorTECSetpointDegC=detectorTECSetpointDegC;
+%                 obj.spectrometer.detectorTECEnabled = 1;
+%                 obj.spectrometer.detectorTECSetpointDegC = detectorTECSetpointDegC;
             end
         end
         
         function set.spectrometerIndex(obj,spectrometerIndex)
             obj.spectrometerIndex=spectrometerIndex;
             if(~obj.is_OceanOptics)
+                  DLL = WasatchNET.Driver.getInstance();
                 obj.spectrometerObj = DLL.getSpectrometer(obj.spectrometerIndex);
             else
             end
@@ -118,8 +119,10 @@ classdef Spectrometer < handle
             
                 data = invoke(obj.spectrometerObj, 'getSpectrum', obj.spectrometerIndex);
             else
-                wavelengths = obj.spectrometer.wavelengths;
-                data = obj.spectrometer.getSpectrum();
+                wavelengths = obj.spectrometerObj.wavelengths;
+                wavelengths=wavelengths.double;
+                data =  obj.spectrometerObj.getSpectrum();
+                data=data.double;
             end
         end
         
@@ -159,16 +162,18 @@ classdef Spectrometer < handle
                 
                 for idx=1:numOfSpectrometers
                     obj.spectrometerObj = DLL.getSpectrometer(idx-1);
-                    info.spectrometerName = char(spectrometer.model);
-                    info.spectrometerSerialNumber =  char(spectrometer.serialNumber);
+                    obj.spectrometerIndex=idx-1;
+                     info.spectrometerName = 'Wasatch';% char(spectrometer.model);
+                     info.spectrometerSerialNumber = 'none';
                     if(isempty(obj.system_info))
                         obj.system_info=info;
                     else
                         obj.system_info(idx,1)=info;
                     end
                 end
+                obj.spectrometerObj.integrationTimeMS=obj.IntegrationTime;
                 obj.spectrometerObj = DLL.getSpectrometer(obj.spectrometerIndex);
-         
+               
 
             end
             

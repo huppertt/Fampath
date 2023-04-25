@@ -2,7 +2,7 @@ classdef Physiol < handle
     properties
         pulseox_connected=false;
         capno_connected=false;
-        capno_port='COM3';
+        capno_port='COM5';
         
     end
     properties(Hidden=true)
@@ -10,7 +10,7 @@ classdef Physiol < handle
         ble_device;
         capno_device;
         
-        data_buffer=1000;
+        data_buffer=1000000;
         
         raw_pulse_data;
         raw_co2_data;
@@ -142,9 +142,9 @@ classdef Physiol < handle
             obj.raw_co2_data=zeros(obj.data_buffer,1);
             obj.raw_EtCO2=zeros(obj.data_buffer,1);
             obj.raw_RespRate=zeros(obj.data_buffer,1);
-            obj.raw_PulseRate=zeros(obj.data_buffer,1);
+            obj.raw_PulseRate=zeros(obj.data_buffer*1000,1);
             obj.raw_SpO2=zeros(obj.data_buffer,1);
-            obj.raw_pulse_time=zeros(obj.data_buffer,1);
+            obj.raw_pulse_time=zeros(obj.data_buffer*1000,1);
             obj.raw_SpO2_time=zeros(obj.data_buffer,1);
             obj.raw_CO2_time=zeros(obj.data_buffer,1);
             obj.raw_EtCO2_time=zeros(obj.data_buffer,1);
@@ -156,14 +156,17 @@ classdef Physiol < handle
         
         
         function add_capno_data(obj,varargin)
-            
+             time_elapsed=now-obj.start_time;
             try
                 data=fread(obj.capno_device,obj.capno_device.BytesAvailable);
-                time_elapsed=now-obj.start_time;
+               
                 
                 EtCO2=[];
                 CO2=[];
                 RR=[];
+                PulseRate=[];
+                SpO2=[];
+                PulseWave=[];
                 
                 startIndices=find(data==hex2dec('FF'));
                 for i=1:length(startIndices)
@@ -199,6 +202,15 @@ classdef Physiol < handle
                                 %0xFA- limit alarm
                             case 253
                                 %0xFD- alarm status
+                            case 245
+                                % pulse rate
+                                PulseRate(end+1)=local_data(4);
+                            case 246
+                                %sp02
+                                SpO2(end+1)=local_data(4);
+                            case 247 
+                                % pulse wave
+                                PulseWave(end+1)=local_data(4);
                         end
                     end
                     %     checksum=256*local_data(5)+local_data(6);
@@ -212,11 +224,16 @@ classdef Physiol < handle
                 EtCO2=EtCO2(1:n);
                 RR=RR(1:n);
                 
+                nn=min([length(SpO2) length(PulseRate)]);
+                SpO2=SpO2(1:nn);
+                PulseRate=PulseRate(1:nn);
+                
+                
                 cnt=obj.raw_EtCO2_cnt+1;
                 obj.raw_EtCO2_cnt=cnt+length(EtCO2)-1;
                 
                 t=linspace(obj.last_sample,time_elapsed,length(EtCO2)+1);
-                obj.last_sample=time_elapsed;
+               
                 obj.raw_EtCO2_time(cnt:obj.raw_EtCO2_cnt)=t(2:end)*86408;
                 obj.raw_EtCO2(cnt:obj.raw_EtCO2_cnt)=EtCO2;
                 obj.raw_RespRate(cnt:obj.raw_EtCO2_cnt)=RR;
@@ -226,8 +243,25 @@ classdef Physiol < handle
                 obj.raw_CO2_cnt=cnt+length(CO2)-1;
                 obj.raw_co2_data(cnt:obj.raw_CO2_cnt)=CO2;
                 
+                t2=linspace(obj.last_sample,time_elapsed,length(SpO2)+1);
+                cnt2=obj.raw_SpO2_cnt+1;
+                obj.raw_SpO2_cnt=cnt2+length(SpO2)-1;
+                obj.raw_PulseRate(cnt2:obj.raw_SpO2_cnt)=PulseRate;
+                obj.raw_SpO2(cnt2:obj.raw_SpO2_cnt)=SpO2;
+                obj.raw_SpO2_time(cnt2:obj.raw_SpO2_cnt)=t2(2:end)*86408;
+                
+                
+                cnt3=obj.raw_pulse_cnt+1;
+                obj.raw_pulse_cnt=cnt3+length(PulseWave)-1;
+                
+                t3=linspace(obj.last_sample,time_elapsed,length(PulseWave)+1);
+                obj.raw_pulse_data(cnt3:obj.raw_pulse_cnt)=PulseWave;
+                obj.raw_pulse_time(cnt3:obj.raw_pulse_cnt)=t3(2:end)*86408;
+            catch
+               % disp('error');
+                
             end
-            
+            obj.last_sample=time_elapsed;
         end
     end
 end

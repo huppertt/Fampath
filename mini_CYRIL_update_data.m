@@ -85,10 +85,12 @@ try
         if(length(xdata)==1); 
             set(app.drawing_handles.physio.SpO2,'Userdata',data.time(1));
         end
-        data.time=(data.time-get(app.drawing_handles.physio.SpO2,'Userdata'))*24*3600;
+        data.time=(data.time-get(app.drawing_handles.physio.SpO2,'Userdata'));
         xdata=[xdata(:)' data.time(:)'];
         ydata=get(app.drawing_handles.physio.SpO2,'Ydata');
+        ydata(ydata==0)=NaN;
         set(app.drawing_handles.physio.SpO2,'Ydata',[ydata(:)' data.pulse(:)'],'Xdata',xdata);
+        
     end
     
     if(~isempty(data.PulseRate))
